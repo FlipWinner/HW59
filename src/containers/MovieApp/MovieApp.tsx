@@ -7,22 +7,20 @@ const MovieApp = () => {
 
     const [movies, setMovies] = useState<IMovie[]>([]);
 
-    const []
-
     const addMovie = (newMovie: MovieMutation) => {
         const updatedMovie = {...newMovie, id: crypto.randomUUID()};
 
         setMovies(prevMovies => [...prevMovies, updatedMovie]);
     }
 
-    const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-
+    const onChangeInput = (id: string, name: string) => {
+        movies.map(movie => movie.id === id ? { ...movie, name: name} : movie);
     }
 
     return (
         <>
             <MovieForm addMovie={addMovie} />
-            <WatchList/>
+            <WatchList movies={movies} onChangeInput={onChangeInput} />
         </>
     );
 };
