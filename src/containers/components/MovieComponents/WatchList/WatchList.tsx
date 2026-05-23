@@ -1,8 +1,13 @@
 const WatchList = () => {
     return (
-        <div>
-
-        </div>
+        <>
+            <div className="list">
+                <div className="list-movie">
+                    <input type="text"/>
+                    <button type='button'>X</button>
+                </div>
+            </div>
+        </>
     );
 };
 

@@ -1,14 +1,14 @@
 import {useState} from "react";
 import * as React from "react";
-import type {IMovie} from "../../../../types";
+import type {MovieMutation} from "../../../../types";
 
 interface Props {
-    addMovie: (newMovie: IMovie) => void;
+    addMovie: (newMovie: MovieMutation) => void;
 }
 
 const MovieForm = ({addMovie}: Props) => {
 
-    const [form, setForm] = useState({
+    const [form, setForm] = useState<MovieMutation>({
         name: ''
     });
 
@@ -23,7 +23,11 @@ const MovieForm = ({addMovie}: Props) => {
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        addMovie()
+        addMovie(form)
+
+        setForm({
+            name: ''
+        })
     };
 
     return (
