@@ -13,14 +13,22 @@ const MovieApp = () => {
         setMovies(prevMovies => [...prevMovies, updatedMovie]);
     }
 
-    const onChangeInput = (id: string, name: string) => {
-        movies.map(movie => movie.id === id ? { ...movie, name: name} : movie);
+    const onChangeInput = (id: string, newName: string) => {
+        setMovies((prevMovies) =>
+            prevMovies.map(movie => movie.id === id ? { ...movie, name: newName} : movie)
+        );
+    }
+
+    const deleteMovie = (id: string) => {
+        setMovies((prevMovies) =>
+            prevMovies.filter(movie => movie.id !== id)
+        )
     }
 
     return (
         <>
             <MovieForm addMovie={addMovie} />
-            <WatchList movies={movies} onChangeInput={onChangeInput} />
+            <WatchList movies={movies} onChangeInput={onChangeInput} onClick={deleteMovie}/>
         </>
     );
 };

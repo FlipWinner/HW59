@@ -14,6 +14,7 @@ const MovieForm = ({addMovie}: Props) => {
 
     const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
+
         setForm({
             ...form,
             name: value
@@ -23,7 +24,9 @@ const MovieForm = ({addMovie}: Props) => {
     const onSubmit = (e:React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        addMovie(form)
+        if (form.name !== "") {
+            addMovie(form)
+        }
 
         setForm({
             name: ''
@@ -32,7 +35,8 @@ const MovieForm = ({addMovie}: Props) => {
 
     return (
         <>
-            <div className="container form">
+            <div className="form">
+                <h2>Name a movie</h2>
                 <form onSubmit={onSubmit}>
                     <input
                         type="text"
