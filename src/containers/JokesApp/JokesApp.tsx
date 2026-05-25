@@ -25,8 +25,6 @@ const JokesApp = () => {
 
                 setJokes(dataJokes);
 
-                console.log(dataJokes);
-
             } catch (err) {
                 console.error(err);
             }
@@ -36,7 +34,7 @@ const JokesApp = () => {
 
     }, [reRender]);
 
-    return (
+    const htmlJokes = jokes.length === 0 ? null : (
         <>
             {jokes.map((joke) => (
                 <div key={joke.id} style={{margin: '20px'}}>
@@ -46,7 +44,9 @@ const JokesApp = () => {
 
             <button type='button' onClick={()  => setReRender(!reRender)}>Get new jokes</button>
         </>
-    );
+    )
+
+    return htmlJokes
 };
 
 export default JokesApp;
